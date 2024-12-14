@@ -1,3 +1,7 @@
+# https://adventofcode.com/2024/day/2
+# ------ Advent Of Code 2024 ------
+# --- Day 2: Red-Nosed Reports ---
+
 from common.loaders import list_per_line
 
 def is_safe(report: list) -> bool:
