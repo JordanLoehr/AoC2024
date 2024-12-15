@@ -1,3 +1,7 @@
+# https://adventofcode.com/2024/day/3
+# ------ Advent Of Code 2024 ------
+# --- Day 3: Mull It Over ---
+
 import re
 
 def purge_disabled(memory: str) -> str:
