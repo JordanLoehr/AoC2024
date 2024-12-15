@@ -2,6 +2,7 @@ import pytest
 
 from d1 import compute_list_distance, compute_similarity_score
 from d2 import is_safe, dampen
+from d3 import parse_memory, execute
 
 
 def test_day_01_part_01():
@@ -39,7 +40,7 @@ def test_day_01_part_02():
         ([1, 3, 6, 7, 9], True),
     ],
 )
-def test_day_02_part_02(report, expected):
+def test_day_02_part_01(report, expected):
     # arrange
     # act
     # assert
@@ -56,8 +57,27 @@ def test_day_02_part_02(report, expected):
         ([1, 3, 6, 7, 9], True),
     ],
 )
-def test_day_02_part_01(report, expected):
+def test_day_02_part_02(report, expected):
     # arrange
     # act
     # assert
     assert dampen(report) == expected
+
+def test_day_03_part_01():
+    # arrange
+    memory = "xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))"
+
+    # act
+    instructions = parse_memory(memory)
+    result = execute(instructions)
+
+    # assert
+    assert result == 161
+
+# def test_day_03_part_02():
+#     # arrange
+#     memory = "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))"
+
+#     # act
+#     instructions = parse_memory_v2(memory)
+#     result 
