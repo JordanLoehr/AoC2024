@@ -2,6 +2,8 @@
 # ------ Advent Of Code 2024 ------
 # --- Day 4: Ceres Search ---
 
+from common.loaders import load_lines
+
 # possible directions in [y,x], there is 8 of them, (1,1) is down and right, (-1,-1) is up and left
 DIRECTIONS = [
     (0, 1),  # E
@@ -28,13 +30,6 @@ def is_valid_coord(search_grid: list, coords: tuple[int, int]) -> bool:
 def parse_search_grid(lines: list[str]) -> list:
     search_grid = [list(line) for line in lines]
     return search_grid
-
-
-def load(filename) -> list[str]:
-    with open(filename, "r") as file:
-        lines = file.readlines()
-
-    return lines
 
 
 def sub_search(search_grid: list, x_coords: tuple[int, int]) -> int:
@@ -122,14 +117,14 @@ def search_p2(search_grid: list) -> int:
 
 
 def part_one(filename):
-    lines = load(filename)
+    lines = load_lines(filename)
     search_grid = parse_search_grid(lines)
     result = search(search_grid)
     return result
 
 
 def part_two(filename):
-    lines = load(filename)
+    lines = load_lines(filename)
     search_grid = parse_search_grid(lines)
     result = search_p2(search_grid)
     return result

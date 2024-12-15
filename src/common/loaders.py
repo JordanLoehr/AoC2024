@@ -19,3 +19,9 @@ def list_per_line(filename: str) -> list[list[int]]:
             a_int = [int(x) for x in a]
             results.append(a_int)
     return results
+
+def load_lines(filename: str) -> list[str]:
+    with open(filename, "r") as file:
+        lines = file.read().splitlines() 
+
+    return lines
