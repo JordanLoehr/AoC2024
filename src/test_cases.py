@@ -3,7 +3,7 @@ import pytest
 from d1 import compute_list_distance, compute_similarity_score
 from d2 import is_safe, dampen
 from d3 import parse_memory, execute, purge_disabled
-from d4 import search
+from d4 import search, search_p2
 
 
 def test_day_01_part_01():
@@ -107,3 +107,22 @@ MXMXAXMASX"""
     # assert
     assert result == 18
 
+def test_day_04_part_02():
+    # arrange
+    a = """MMMSXXMASM
+MSAMXMSMSA
+AMXSXMAAMM
+MSAMASMSMX
+XMASAMXAMM
+XXAMMXXAMA
+SMSMSASXSS
+SAXAMASAAA
+MAMMMXMMMM
+MXMXAXMASX"""
+    search_grid = [list(row) for row in a.split()]
+
+    # act
+    result = search_p2(search_grid)
+
+    # assert
+    assert result == 9
