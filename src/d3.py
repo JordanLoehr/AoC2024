@@ -1,5 +1,10 @@
 import re
 
+def purge_disabled(memory: str) -> str:
+    # remove sections of corrupted memory between don't() and do()
+    purged_memory = re.sub(r"don't\(\).+?do\(\)", "", memory)
+    return purged_memory
+
 def parse_memory(memory: str) -> list[str]:
     # takes corrupted memory and returns list of valid instructions
     instructions = re.findall(r"mul\(\d+,\d+\)", memory)
@@ -21,11 +26,19 @@ def part_one(filename):
         instructions = parse_memory(memory)
         result = execute(instructions)
     return result
+
+def part_two(filename):
+    with open(filename, 'r') as file:
+        memory = file.readline()
+        purged_memory = purge_disabled(memory)
+        instructions = parse_memory(purged_memory)
+        result = execute(instructions)
+    return result
         
 if __name__ == "__main__":
     print('Day 3: Part One'.center(40,'-'))
     answer = part_one('inputs/d3.txt') # newlines removed before hand
     print(answer)
-    # print('Day 2: Part Two'.center(40,'-'))
-    # answer = part_two('inputs/d2.txt')
-    # print(answer)
+    print('Day 3: Part Two'.center(40,'-'))
+    answer = part_two('inputs/d3.txt')
+    print(answer)

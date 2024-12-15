@@ -2,7 +2,7 @@ import pytest
 
 from d1 import compute_list_distance, compute_similarity_score
 from d2 import is_safe, dampen
-from d3 import parse_memory, execute
+from d3 import parse_memory, execute, purge_disabled
 
 
 def test_day_01_part_01():
@@ -74,10 +74,14 @@ def test_day_03_part_01():
     # assert
     assert result == 161
 
-# def test_day_03_part_02():
-#     # arrange
-#     memory = "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))"
+def test_day_03_part_02():
+    # arrange
+    memory = "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))"
 
-#     # act
-#     instructions = parse_memory_v2(memory)
-#     result 
+    # act
+    purged_memory = purge_disabled(memory)
+    instructions = parse_memory(purged_memory)
+    result = execute(instructions)
+    
+    # assert
+    assert result == 48
