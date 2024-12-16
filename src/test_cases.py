@@ -1,6 +1,6 @@
 import pytest
 
-import d1, d2, d3, d4, d5
+import d1, d2, d3, d4, d5, d6
 
 
 def test_day_01_part_01():
@@ -211,3 +211,30 @@ def test_day_05_part_02():
 
     assert middle_sum == 123
 
+def test_day_06_part_01():
+    # arrange
+    grid_raw = """....#.....
+.........#
+..........
+..#.......
+.......#..
+..........
+.#..^.....
+........#.
+#.........
+......#..."""
+
+    grid = [list(col) for col in grid_raw.split("\n")]
+    print(grid)
+
+    # act
+    d6.walk_path(grid)
+    print(grid)
+    coord_count = d6.count_coords(grid)
+
+
+    # assert
+
+    assert coord_count == 41
+
+    
