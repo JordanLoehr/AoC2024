@@ -202,8 +202,10 @@ def test_day_05_part_02():
 
     # act
     invalid_updates = d5.filter_invalid_updates(rules, updates)
-    reordered_updates = d5.reorder_invalid_updates(rules, invalid_updates)
-    middle_sum = d5.middle_sum(reordered_updates)
+    print(invalid_updates)
+    d5.sort_invalid_updates(rules, invalid_updates)
+    print(invalid_updates)
+    middle_sum = d5.middle_sum(invalid_updates)
 
     # assert
 

@@ -62,8 +62,23 @@ def filter_invalid_updates(rules: dict, updates: list[list[int]]) -> list:
     invalid_updates = [update for update in updates if not is_update_valid(update, rules)]
     return invalid_updates
 
-def reorder_invalid_updates(rules: dict, updates: list[list[int]]) -> list:
-    return updates
+def bubble_sort(rules: dict, update: list[int]):
+    n = len(update)
+
+    for i in range(n):
+        already_sorted = True
+        for j in range(n - i - 1):
+            if update[j+1] not in rules[update[j]]:
+                # the rules specify what numbers need to be after the current, so if the adjacent isn't in the current rules it needs to be swapped
+                update[j], update[j+1] = update[j+1], update[j]
+                already_sorted = False # we made a switch so continue through more iterations
+        if already_sorted:
+            break
+    
+
+def sort_invalid_updates(rules: dict, updates: list[list[int]]):
+    for update in updates:
+        bubble_sort(rules, update)
 
 def middle_sum(updates: list[list[int]]) -> int:
     middles = [update[len(update)//2] for update in updates]
@@ -80,8 +95,9 @@ def part_two(filename):
     lines = load_lines(filename)
     rules, updates = parse_input(lines)
     invalid_updates = filter_invalid_updates(rules, updates)
-    reordered_updates = reorder_invalid_updates(rules, invalid_updates)
-    result = middle_sum(reordered_updates)
+    sort_invalid_updates(rules, invalid_updates)
+
+    result = middle_sum(invalid_updates)
     return result
 
 if __name__ == "__main__":
